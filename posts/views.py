@@ -5,3 +5,19 @@ from django.shortcuts import render
 
 def index(request):
     return render(request, 'posts/index.html')
+
+
+def create(request):
+    pass
+
+
+def detail(request, id):
+    pass
+
+
+def update(request, id):
+    pass
+
+
+def delete(request, id):
+    pass
