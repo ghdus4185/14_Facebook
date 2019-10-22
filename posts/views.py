@@ -5,8 +5,11 @@ from .models import Post
 
 
 def index(request):
-    post = Post.objects.GET.get.all()
-    return render(request, 'posts/index.html')
+    posts = Post.objects.all()
+    context = {
+        'posts': posts
+    }
+    return render(request, 'posts/index.html', context)
 
 
 def create(request):
@@ -15,6 +18,7 @@ def create(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
+            post.save()
             return redirect('posts:index')
     else:
         form = PostForm()
