@@ -38,3 +38,15 @@ def update(request, id):
 
 def delete(request, id):
     pass
+
+
+def like(request, id):
+    post = get_object_or_404(Post, id=id)
+    user = request.user
+    # if post.like_users.filter(id=user.id):
+    if user in post.like_users.all():
+        post.like_users.remove(user)
+    else:
+        post.like_users.add(user)
+
+    return redirect('posts:index')
